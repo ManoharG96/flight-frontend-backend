@@ -1,5 +1,5 @@
 <div class="col-md-6 offset-3 card card-body" [hidden]="!errorBoolean">
-    <h6 class="text-center">{{errors.description}}</h6>
+    <h6 class="text-center text-danger">{{errors.description}}</h6>
 </div>
 <form action="" class="col-md-4 offset-4 mt-4 mb-4 card card-body" #form="ngForm" (ngSubmit)="loginData(form)"
     method="POST">
@@ -8,10 +8,10 @@
         <input type="email" name="emailId" id="emailId" class="form-control" placeholder="Email Id" #emailId="ngModel"
             ngModel pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
         <div *ngIf="emailId.touched && emailId.invalid">
-            <div *ngIf="emailId.errors.required" class="text-danger text-center"> * this field is required</div>
+            <div *ngIf="emailId.errors.required" class="text-danger text-center">*this field is required</div>
         </div>
         <div *ngIf="emailId.errors && (emailId.touched || emailId.dirty)" class="text-danger text-center">
-            <div [hidden]="!emailId.errors?.pattern"> *valid EmailId Please </div>
+            <div [hidden]="!emailId.errors?.pattern">*valid EmailId Please </div>
         </div>
     </div>
     <div class="form-group">

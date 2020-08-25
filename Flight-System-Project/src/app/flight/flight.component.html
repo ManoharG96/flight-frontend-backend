@@ -1,19 +1,15 @@
-<a>{{user.userName}}</a>
-
 <table style="width:100%" class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th class="text-center">Id</th>
-            <th class="text-center">Name</th>
-            <th class="text-center">Leaving</th>
-            <th class="text-center">Distination</th>
-            <th class="text-center">Airport Name</th>
-            <th class="text-center">Journey Date</th>
-            <th class="text-center">Time</th>
-            <th class="text-center">Cost</th>
-            <th class="text-center">Button</th>
-        </tr>
-    </thead>
+    <tr>
+        <th class="text-center text-info">Id</th>
+        <th class="text-center text-info">Name</th>
+        <th class="text-center text-info">Leaving</th>
+        <th class="text-center text-info">Distination</th>
+        <th class="text-center text-info">Airport Name</th>
+        <th class="text-center text-info">Journey Date</th>
+        <th class="text-center text-info">Time</th>
+        <th class="text-center text-info">Cost</th>
+        <th class="text-center text-info">Button</th>
+    </tr>
     <tr *ngFor="let flight of flights; let i=index">
         <td class="text-center">{{flight.flightId}}</td>
         <td class="text-center">{{flight.flightName}}</td>
@@ -22,7 +18,7 @@
         <td class="text-center">{{flight.airportName}}</td>
         <td class="text-center">{{flight.departureDate}}</td>
         <td class="text-center">{{flight.departureTime}}</td>
-        <td class="text-center">{{flight.price}}</td>
+        <td class="text-center">{{flight.price | currency:'INR'}}</td>
         <td><button type="submit" class="btn btn-success" (click)="flightSearchDetails(flight)">Book</button></td>
     </tr>
 </table>

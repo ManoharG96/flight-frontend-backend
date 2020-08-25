@@ -1,4 +1,3 @@
-<a>{{user.userName}}</a>
 <table style="width:100%" class="table">
     <thead class="thead-dark">
         <tr>
@@ -20,6 +19,6 @@
         <td class="text-center">{{bookedDetails.flightDetails.airportName}}</td>
         <td class="text-center">{{bookedDetails.flightDetails.departureDate}}</td>
         <td class="text-center">{{bookedDetails.flightDetails.departureTime}}</td>
-        <td class="text-center">{{bookedDetails.flightDetails.price}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.price | currency:'INR'}}</td>
     </tr>
 </table>

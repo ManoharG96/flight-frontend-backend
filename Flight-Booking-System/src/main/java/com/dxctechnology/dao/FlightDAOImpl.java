@@ -24,7 +24,7 @@ public class FlightDAOImpl implements FlightDAO {
 		if (flightsFromDb.isEmpty()) {
 			CustomExceptionHandlers userException = new CustomExceptionHandlers();
 			userException.setMessage("Flight didnt find");
-			userException.setDescription("please enter the correct details where flights found in db");
+			userException.setDescription("Flights not available");
 			throw userException;
 			
 		} else {

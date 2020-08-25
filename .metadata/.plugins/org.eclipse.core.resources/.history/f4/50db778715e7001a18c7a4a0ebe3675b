@@ -1,0 +1,23 @@
+#setting server port
+server.port=8000
+
+#configuration of MySQL database
+spring.datasource.url= jdbc:mysql://localhost:3306/flightDb
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+#config for mongodb
+spring.data.mongodb.database=flight
+spring.data.mongodb.port=27017
+spring.data.mongodb.host=localhost
+
+#config for mail to send token
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=manohargreddy05@gmail.com
+spring.mail.password=Munna@143Cutiee
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+

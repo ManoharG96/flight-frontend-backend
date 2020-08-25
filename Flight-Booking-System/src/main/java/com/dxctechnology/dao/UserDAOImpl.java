@@ -16,7 +16,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private SendingTokenEmailId sendingMail;
 
@@ -26,7 +26,7 @@ public class UserDAOImpl implements UserDAO {
 			if (userRepository.findByEmailId(user.getEmailId()) != null) {
 				CustomExceptionHandlers userException = new CustomExceptionHandlers();
 				userException.setMessage("Email Already register");
-				userException.setDescription("Enter Email id already register so please go and login");
+				userException.setDescription("User already available with enter EmailId");
 				throw userException;
 			} else {
 				userRepository.save(user);		
@@ -48,28 +48,41 @@ public class UserDAOImpl implements UserDAO {
 		} else {
 			CustomExceptionHandlers userException = new CustomExceptionHandlers();
 			userException.setMessage("Cant Login");
-			userException.setDescription("Please Enter correct crendentials");
+			userException.setDescription("Please enter correct crendentials");
 			throw userException;
 		}
 	}
 
 	@Override
 	public ResponseEntity<?> edit(User user) {
-		User userFromDB = userRepository.findById(user.getUserId()).orElse(null);
-		User userCheckMail = userRepository.findByEmailId(user.getEmailId());
-		if (userFromDB != null && userCheckMail == null) {
-			userFromDB.setUserName(user.getUserName());
-			userFromDB.setEmailId(user.getEmailId());
-			userRepository.save(userFromDB);
-			return new ResponseEntity<User>(userFromDB, HttpStatus.OK);
+		
+		if(userRepository.findByEmailId(user.getEmailId()) == null) {
+			User userCheckId = userRepository.findById(user.getUserId()).orElse(null);
+			userCheckId.setUserName(user.getUserName());
+			userCheckId.setEmailId(user.getEmailId());
+			userRepository.save(userCheckId);
+			return new ResponseEntity<User>(userCheckId, HttpStatus.OK);
+		}else if (userRepository.findByEmailId(user.getEmailId()) != null) {
+			User checkId = userRepository.findByEmailId(user.getEmailId());
+			if(checkId.getUserId() == user.getUserId()) {
+				checkId.setUserName(user.getUserName());
+				checkId.setEmailId(user.getEmailId());
+				userRepository.save(checkId);
+				return new ResponseEntity<User>(checkId, HttpStatus.OK);
+			} else {
+				CustomExceptionHandlers userException = new CustomExceptionHandlers();
+				userException.setMessage("Please check once again");
+				userException.setDescription("User already available with enter mail id");
+				throw userException;
+			}
 		} else {
 			CustomExceptionHandlers userException = new CustomExceptionHandlers();
 			userException.setMessage("Please check once again");
-			userException.setDescription("There is already user with this mail id");
+			userException.setDescription("User already available with enter mail id");
 			throw userException;
 		}
 	}
-
+	
 	@Override
 	public ResponseEntity<?> resetPassword(String emailId, String token, String password, String confirmPassword) {
 		User userFromDB = userRepository.findByEmailId(emailId);
@@ -113,8 +126,8 @@ public class UserDAOImpl implements UserDAO {
 			return new ResponseEntity<User>(userFromDb, HttpStatus.OK);	
 		} catch (Exception e) {
 			CustomExceptionHandlers userException = new CustomExceptionHandlers();
-			userException.setMessage("Didnt find user with enter mailId");
-			userException.setDescription("please check your mailId");
+			userException.setMessage("Invalid EmailId");
+			userException.setDescription("Invalid EmailId");
 			throw userException;
 		}
 	}

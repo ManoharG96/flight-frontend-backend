@@ -17,6 +17,7 @@ export class EditUserComponent implements OnInit {
   errors = new ErrorsInfo();
   errorBoolean: boolean = false;
   success: boolean = false;
+  
   ngOnInit() {
     this.user = new User();
     this.errors = new ErrorsInfo();

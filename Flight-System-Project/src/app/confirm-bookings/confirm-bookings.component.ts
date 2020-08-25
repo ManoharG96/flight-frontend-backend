@@ -40,10 +40,12 @@ export class ConfirmBookingsComponent implements OnInit {
   }
 
   confirmBookings() {
+
     this.confirmBooking.flightDetails = this.selectedFlight;
     this.confirmBooking.passengerDetails = this.passengerList;
     this.confirmBooking.userId = this.user.userId;
     this.confirmBooking.bookingPrice = this.totalPrice;
+
     this.bookingService.confirmBooking(this.confirmBooking).subscribe(data => {
       sessionStorage.setItem('bookedDetails', JSON.stringify(data));
       this.dataFromDb = JSON.parse(sessionStorage.getItem('bookedDetails'));

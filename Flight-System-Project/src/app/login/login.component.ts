@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../classes/user';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorsInfo } from '../classes/errors-info';
 
 @Component({
@@ -18,6 +17,8 @@ export class LoginComponent implements OnInit {
   userFromDb: any;
   errors = new ErrorsInfo(); 
   errorBoolean: boolean = false;
+  sendingStatus: boolean = false;
+  
   ngOnInit() {
     this.errors = new ErrorsInfo();
   }

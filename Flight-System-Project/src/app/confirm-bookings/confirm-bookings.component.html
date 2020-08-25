@@ -1,17 +1,17 @@
 <div [hidden]="!success">
     <table style="width:100%" class="table">
         <tr>
-            <th class="text-center text-info">Booking-Id</th>
-            <th class="text-center text-info">Flight-Name</th>
-            <th class="text-center text-info">Airport-Name</th>
-            <th class="text-center text-info">Total-Price</th>
+            <th class="text-center text-info">Booking Id</th>
+            <th class="text-center text-info">Flight Name</th>
+            <th class="text-center text-info">Airport Name</th>
+            <th class="text-center text-info">Total Price(Rupee)</th>
             <th class="text-center text-info">DOJ</th>
         </tr>
         <tr>
             <td class="text-center text-danger">{{dataFromDb.bookingId}}</td>
             <td class="text-center">{{displayFlight.flightName}}</td>
             <td class="text-center">{{displayFlight.airportName}}</td>
-            <td class="text-center text-danger">{{dataFromDb.bookingPrice}}</td>
+            <td class="text-center text-danger">{{dataFromDb.bookingPrice | currency:'INR'}}</td>
             <td class="text-center">{{displayFlight.departureDate}}</td>
         </tr>
     </table>
@@ -20,12 +20,12 @@
     <form action="">
         <table style="width:100%" class="table">
             <tr>
-                <th class="text-center">Flight-Name</th>
+                <th class="text-center">Flight Name</th>
                 <th class="text-center">Leaving</th>
                 <th class="text-center">Destination</th>
                 <th class="text-center">DOJ</th>
                 <th class="text-center">Passengers</th>
-                <th class="text-center">Total-Cost</th>
+                <th class="text-center">Total Cost</th>
             </tr>
             <tr>
                 <td class="text-center">{{selectedFlight.flightName}}</td>
@@ -34,16 +34,16 @@
                 <td class="text-center">{{selectedFlight.departureDate}}</td>
                 <table style="width:100%">
                     <td class="text-center" *ngFor="let pass of passengerList">
-                        name: {{pass.name}}<br>
-                        age:{{pass.age}}
+                        Name:- {{pass.name}}<br>
+                        Age:- {{pass.age}}
                     </td>
                 </table>
-                <td class="text-center">{{totalPrice}}</td>
+                <td class="text-center">{{totalPrice | currency:'INR'}}</td>
             </tr>
 
         </table>
         <div class="form-group">
-            <input (click)="confirmBookings()" type="submit" value="Book" class="btn btn-outline-secondary float-right">
+            <input (click)="confirmBookings()" type="submit" value="Proceed" class="btn btn-outline-secondary float-right">
         </div>
     </form>
 </div>

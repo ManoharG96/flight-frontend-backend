@@ -15,7 +15,7 @@ public class SendingTokenEmailIdImpl implements SendingTokenEmailId {
 	public void sendTokenEmail(String emailId, String token) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(emailId);
-		message.setText("You token To Reset Password:- "+token);
+		message.setText("Your token to Reset Password:- "+token);
 		message.setSubject("Token To reset password");
 		mailSender.send(message);
 	}

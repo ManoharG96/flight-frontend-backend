@@ -34,7 +34,6 @@ export class AddPassengerComponent implements OnInit {
       console.log("login first")
       this.route.navigate(['/login']);
     }
-
   }
 
   passengers(form) {
@@ -49,8 +48,8 @@ export class AddPassengerComponent implements OnInit {
     sessionStorage.setItem('passengersList', JSON.stringify(this.passengerArray));
     console.log(sessionStorage.getItem('passengersList'));
     this.navigateToConfirmBooking();
-
   }
+  
   addForm() {
     this.passenger = new Passengers();
     this.passengerArray.push(this.passenger);

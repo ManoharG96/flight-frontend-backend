@@ -47,7 +47,7 @@ public class UserController {
 				user.getPassword(), user.getConfirmPassword());
 	}
 
-	@PostMapping("/sendtoken")
+	@PostMapping("/sendtoken")//reset password in front-end
 	public ResponseEntity<?> setToken(@RequestBody User user){
 		return userService.sendToken(user.getEmailId());
 
@@ -64,7 +64,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/emailid")
+	@GetMapping("/emailid")//forgot password
 	public ResponseEntity<?> sendToken(@RequestParam("emailId") String emailId){
 		return userService.sendToken(emailId);
 	}

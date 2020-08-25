@@ -36,9 +36,10 @@ export class FlightComponent implements OnInit {
       sessionStorage.setItem('selectedFlight', JSON.stringify(flight));
       console.log(JSON.parse(sessionStorage.getItem('selectedFlight')));
     } else {
-      console.log("not flight selected");
+      console.log("Flight is not selected");
     }
   }
+
   navigateToBookings() {
     this.route.navigate(['add-passenger']);
   }
