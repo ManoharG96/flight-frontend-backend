@@ -1,0 +1,11 @@
+package com.dxctechnology.dao;
+
+import java.time.LocalDate;
+
+import com.dxctechnology.model.Flight;
+
+public interface FlightDAO {
+	
+	Flight searchFlight(String fromLocation, String toLocation, LocalDate dateOfJou);
+
+}

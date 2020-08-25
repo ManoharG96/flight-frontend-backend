@@ -1,0 +1,49 @@
+package com.dxctechnology.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.dxctechnology.dao.UserDAO;
+import com.dxctechnology.exception.CustomExceptionHandlers;
+import com.dxctechnology.model.User;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserDAO userDao;
+
+	@Override
+	public ResponseEntity<?> register(User user) {
+		if (user.getUserName().isBlank() || user.getUserName() == null) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("UserName should not be empty");
+			userException.setDescription("UserName cant be empty");
+			throw userException;
+		}else if (user.getEmailId().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Email should not be empty");
+			userException.setDescription("Email cant be empty");
+			throw userException;
+		}else if (user.getPassword().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Password should not be empty");
+			userException.setDescription("Password cant be empty");
+			throw userException;
+		}else if (user.getConfirmPassword().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("ConfirmPassword should not be empty");
+			userException.setDescription("ConfirmPassword cant be empty");
+			throw userException;
+		}else {
+			return userDao.register(user);
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> login(String emailId, String password) {
+		return userDao.login(emailId, password);
+	}
+
+}

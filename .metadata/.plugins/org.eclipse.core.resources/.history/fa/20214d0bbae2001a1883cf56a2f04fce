@@ -1,0 +1,12 @@
+package com.dxctechnology.repository;
+
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.dxctechnology.model.Bookings;
+
+public interface BookingRepository extends MongoRepository<Bookings, String> {
+	List<Bookings> findByUserId(int userId);
+
+}

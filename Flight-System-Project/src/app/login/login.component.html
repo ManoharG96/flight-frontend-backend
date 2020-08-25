@@ -1,0 +1,32 @@
+<div class="col-md-6 offset-3 card card-body" [hidden]="!errorBoolean">
+    <h6 class="text-center">{{errors.description}}</h6>
+</div>
+<form action="" class="col-md-4 offset-4 mt-4 mb-4 card card-body" #form="ngForm" (ngSubmit)="loginData(form)"
+    method="POST">
+    <h3 class="text-center">Login</h3>
+    <div class="form-group">
+        <input type="email" name="emailId" id="emailId" class="form-control" placeholder="Email Id" #emailId="ngModel"
+            ngModel pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <div *ngIf="emailId.touched && emailId.invalid">
+            <div *ngIf="emailId.errors.required" class="text-danger text-center"> * this field is required</div>
+        </div>
+        <div *ngIf="emailId.errors && (emailId.touched || emailId.dirty)" class="text-danger text-center">
+            <div [hidden]="!emailId.errors?.pattern"> *valid EmailId Please </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+            #password="ngModel" ngModel required>
+        <div *ngIf="password.touched && password.invalid">
+            <div *ngIf="password.errors.required" class="text-danger text-center"> *this field is required
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-outline-success float-right" [disabled]="form.invalid">Login</button>
+    </div>
+    <div class="form-group">
+        <button type="button" (click)="navigateToForgotPassword()" class="form-control btn btn-link">forgot your password</button>
+        <button type="button" (click)="navigateToRegister()" class="form-control btn btn-link">create new account</button>
+    </div>
+</form>

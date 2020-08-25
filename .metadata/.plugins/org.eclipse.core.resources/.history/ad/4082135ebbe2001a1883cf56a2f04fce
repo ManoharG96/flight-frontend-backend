@@ -1,0 +1,48 @@
+package com.dxctechnology.model;
+
+import javax.persistence.Id;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "Bookings")
+public class Bookings {
+	
+	@Id
+	private String id;
+	private Integer userId;
+	private Integer bookingId;
+	private Flight flightDetails;
+	private Passenger passengerDetails;
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Flight getFlightDetails() {
+		return flightDetails;
+	}
+	public void setFlightDetails(Flight flightDetails) {
+		this.flightDetails = flightDetails;
+	}
+	public Passenger getPassengerDetails() {
+		return passengerDetails;
+	}
+	public void setPassengerDetails(Passenger passengerDetails) {
+		this.passengerDetails = passengerDetails;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Integer getBookingId() {
+		return bookingId;
+	}
+	public void setBookingId(Integer bookingId) {
+		this.bookingId = bookingId;
+	}
+	
+
+}

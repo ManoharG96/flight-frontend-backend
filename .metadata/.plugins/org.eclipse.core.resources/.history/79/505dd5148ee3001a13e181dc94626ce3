@@ -1,0 +1,24 @@
+package com.dxctechnology.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.dxctechnology.dao.FlightDAO;
+import com.dxctechnology.model.Flight;
+
+@Service
+public class FlightServiceImpl implements FlightService {
+
+	@Autowired
+	private FlightDAO flightDao;
+
+	@Override
+	public Flight searchFlight(String fromLocation, String toLocation, String departureDate) {
+		if (flightDao.searchFlight(fromLocation, toLocation, departureDate)!=null) {
+			return flightDao.searchFlight(fromLocation, toLocation, departureDate);
+		} else {
+			return null;
+		}
+	}
+
+}

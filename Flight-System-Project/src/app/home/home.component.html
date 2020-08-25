@@ -1,0 +1,43 @@
+<div class="col-md-6 offset-3 card card-body" [hidden]="!errorBoolean">
+    <h6 class="text-center">{{errors.description}}</h6>
+</div>
+<div class="form-group">
+    <span class="form-label">
+        <h4 class="text-left text-primary">Welcome {{user.userName}}</h4>
+    </span>
+</div>
+<form class="col-md-6 offset-3 mt-4 mb-4 card card-body" #form="ngForm" (ngSubmit)="searchDate(form)">
+    <h3 class="text-center">Search Flight</h3>
+    <div class="form-group">
+        <span class="form-label">Source</span>
+        <select class="form-control" name="fromLocation" id="fromLocation" #fromLocation="ngModel" ngModel>
+            <option disabled hidden selected>City</option>
+            <option value="New Delhi">New-Delhi</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Noida">Noida</option>
+            <option value="Hydrabad">Hydrabad</option>
+            <option value="Gurgon">Gurgon</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <span class="form-label">Destination</span>
+        <select #toLocation="ngModel" ngModel class="form-control" name="toLocation" id="toLocation">
+            <option disabled hidden selected>City</option>
+            <option value="New Delhi">New-Delhi</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Noida">Noida</option>
+            <option value="Hydrabad">Hydrabad</option>
+            <option value="Gurgon">Gurgon</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <span class="form-label">Journey Date</span>
+        <input id="departureDate" name="departureDate" class="form-control" type="date" required
+            #departureDate="ngModel" ngModel>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-outline-secondary float-right" type="submit" [disabled]="form.invalid">Search</button>
+    </div>
+</form>

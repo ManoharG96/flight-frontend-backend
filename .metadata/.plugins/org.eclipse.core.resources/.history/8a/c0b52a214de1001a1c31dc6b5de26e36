@@ -1,0 +1,23 @@
+package com.dxctechnology.exception;
+
+import java.time.LocalDate;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+public class UserResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+
+	@ExceptionHandler(CustomExceptionHandlers.class)
+	public ResponseEntity<ExceptionResponse> toDoNotFound(CustomExceptionHandlers exception){
+		ExceptionResponse response = new ExceptionResponse();
+		response.setMessage(exception.getMessage());
+		response.setDescription(exception.getDescription());
+		response.setDate(LocalDate.now());
+		return new ResponseEntity<ExceptionResponse>(response, HttpStatus.NOT_FOUND);
+	}
+
+}

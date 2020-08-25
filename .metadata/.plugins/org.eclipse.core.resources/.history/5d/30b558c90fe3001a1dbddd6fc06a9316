@@ -1,0 +1,11 @@
+package com.dxctechnology.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.dxctechnology.model.Flight;
+
+public interface FlightRepository extends JpaRepository<Flight, Integer> {
+	
+	Flight findByFromLocation
+
+}

@@ -1,0 +1,7 @@
+package com.dxctechnology.service;
+
+import com.dxctechnology.model.Flight;
+
+public interface FlightService {
+	Flight searchFlight(String fromLocation, String toLocation, String departureDate);
+}

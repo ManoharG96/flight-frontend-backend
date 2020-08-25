@@ -1,0 +1,12 @@
+package com.dxctechnology.dao;
+
+import java.util.List;
+
+import com.dxctechnology.model.Bookings;
+
+public interface BookingsDAO {
+	
+	Bookings addBookings(Bookings book);
+	List<Bookings> getbookings(int userId);
+
+}

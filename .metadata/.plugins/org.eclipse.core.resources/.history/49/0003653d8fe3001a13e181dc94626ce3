@@ -1,0 +1,13 @@
+package com.dxctechnology.dao;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.dxctechnology.model.Flight;
+
+public interface FlightDAO {
+	
+	ResponseEntity<?> searchFlight(String fromLocation, String toLocation, String departureDate);
+
+}

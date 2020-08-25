@@ -1,0 +1,45 @@
+package com.dxctechnology.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+
+import com.dxctechnology.exception.CustomExceptionHandlers;
+import com.dxctechnology.model.User;
+import com.dxctechnology.repository.UserRepository;
+
+@Component
+public class UserDAOImpl implements UserDAO {
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Override
+	public ResponseEntity<?> register(User user) {
+		if (user.getPassword().equals(user.getConfirmPassword())) {
+			userRepository.save(user);		
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		} else {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("ConfirmPassword and Password should be same");
+			userException.setDescription("ConfirmPassword and Password should contains same charaters");
+			throw userException;
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> login(String emailId, String password) {
+		User user = userRepository.findByEmailIdAndPassword(emailId, password);
+		if (user != null) {
+			return new ResponseEntity<User>(user,HttpStatus.OK);
+		} else {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Cant Login");
+			userException.setDescription("Please Enter correct crendentials");
+			throw userException;
+		}
+
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.dxctechnology.dao;
+
+import java.util.List;
+
+import com.dxctechnology.model.Flight;
+
+public interface FlightDAO {
+	
+	List<Flight> searchFlight(String fromLocation, String toLocation, String departureDate);
+
+}

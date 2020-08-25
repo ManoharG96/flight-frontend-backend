@@ -1,0 +1,28 @@
+package com.dxctechnology.dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.dxctechnology.model.Bookings;
+import com.dxctechnology.repository.BookingRepository;
+
+@Component
+public class BookingsDAO {
+	
+	@Autowired
+	private BookingRepository repo;
+	
+	
+	public void addBookings(Bookings book) {
+		repo.save(book);
+	}
+	
+	public List<Bookings> getbookings(int userId){
+		return repo.findByUserId(userId);
+	}
+	
+	
+
+}

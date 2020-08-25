@@ -1,0 +1,9 @@
+package com.dxctechnology.dao;
+
+import com.dxctechnology.model.Bookings;
+
+public interface BookingsDAO {
+	
+	Bookings addBookings(Bookings book, int userId);
+
+}

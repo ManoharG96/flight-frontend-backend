@@ -1,0 +1,5 @@
+package com.dxctechnology.model;
+
+public class Flight {
+
+}

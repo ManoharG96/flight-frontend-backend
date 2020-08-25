@@ -1,0 +1,8 @@
+Requirment and Gathering - Completed on 15th aug 2020
+User Stories - In Progress
+Design - Completed on 16th Aug 2020
+DB Schema - Work in progress (Almost completed)
+service and Business Layer - Not yet started (Will complete by 21st)
+Ui Development - After completing angular 8
+End to end Testing - not yet completed
+Final - 26th Aug 2020

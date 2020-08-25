@@ -1,0 +1,8 @@
+package com.dxctechnology.service;
+
+import com.dxctechnology.model.Tokens;
+
+public interface TokenService {
+	Tokens getByUserId(int userId);
+
+}

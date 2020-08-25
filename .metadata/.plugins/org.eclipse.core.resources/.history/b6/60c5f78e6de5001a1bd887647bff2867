@@ -1,0 +1,46 @@
+package com.dxctechnology.model;
+
+import java.util.List;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class Bookings {
+	
+	private Integer userId;
+	private Integer bookingId;
+	private Flight flightDetails;
+	private List<Passenger> passengerDetails;
+	private double bookingPrice;
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getBookingId() {
+		return bookingId;
+	}
+	public void setBookingId(Integer bookingId) {
+		this.bookingId = bookingId;
+	}
+	public Flight getFlightDetails() {
+		return flightDetails;
+	}
+	public void setFlightDetails(Flight flightDetails) {
+		this.flightDetails = flightDetails;
+	}
+	public List<Passenger> getPassengerDetails() {
+		return passengerDetails;
+	}
+	public void setPassengerDetails(List<Passenger> passengerDetails) {
+		this.passengerDetails = passengerDetails;
+	}
+	public double getBookingPrice() {
+		return bookingPrice;
+	}
+	public void setBookingPrice(double bookingPrice) {
+		this.bookingPrice = bookingPrice;
+	}
+}

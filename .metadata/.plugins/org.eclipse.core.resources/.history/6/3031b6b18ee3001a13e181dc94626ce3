@@ -1,0 +1,35 @@
+package com.dxctechnology.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.dxctechnology.dao.FlightDAO;
+import com.dxctechnology.exception.CustomExceptionHandlers;
+import com.dxctechnology.model.Flight;
+
+@Service
+public class FlightServiceImpl implements FlightService {
+
+	@Autowired
+	private FlightDAO flightDao;
+
+	@Override
+	public List<Flight> searchFlight(String fromLocation, String toLocation, String departureDate) {
+		if (flightDao.searchFlight(fromLocation, toLocation, departureDate)!=null) {
+			return flightDao.searchFlight(fromLocation, toLocation, departureDate);
+		} else if(fromLocation.isEmpty() || ) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("FromLocation should not be empty");
+			userException.setDescription("Please enter FromLocation cant be empty");
+			throw userException;
+		} else if (toLocation.isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("ToLocation should not be empty");
+			userException.setDescription("Please enter ToLocation cant be empty");
+			throw userException;
+		}
+	}
+
+}

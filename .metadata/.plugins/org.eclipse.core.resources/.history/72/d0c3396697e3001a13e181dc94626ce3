@@ -1,0 +1,27 @@
+package com.dxctechnology.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.dxctechnology.dao.BookingsDAO;
+import com.dxctechnology.model.Bookings;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+	@Autowired
+	private BookingsDAO bookingDao;
+	
+	@Override
+	public Bookings addBookings(Bookings book, int userId) {
+		return bookingDao.addBookings(book, userId);
+	}
+
+	@Override
+	public List<Bookings> getbookings(int userId) {
+		return bookingDao.getbookings(userId);
+	}
+
+}

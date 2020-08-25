@@ -1,0 +1,18 @@
+package com.dxctechnology.dao;
+
+import org.springframework.stereotype.Component;
+
+import com.dxctechnology.model.Flight;
+import com.dxctechnology.repository.FlightRepository;
+
+@Component
+public class FlightDAOImpl implements FlightDAO {
+	
+	private FlightRepository flightRepository;
+
+	@Override
+	public Flight searchFlight(String fromLocation, String toLocation, String dateOfJou) {
+		return flightRepository.findByFromLocationAndToLocationAndDepartureDate(fromLocation, toLocation, dateOfJou);
+	}
+
+}

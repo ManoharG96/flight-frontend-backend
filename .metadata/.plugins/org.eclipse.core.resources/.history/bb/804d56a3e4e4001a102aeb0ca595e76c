@@ -1,0 +1,19 @@
+package com.dxctechnology.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.dxctechnology.model.Tokens;
+import com.dxctechnology.repository.TokenRepository;
+
+public class TokensDAOImpl implements TokensDAO {
+
+	@Autowired
+	private TokenRepository tokenRepository;
+
+	@Override
+	public Tokens getByUserId(int userId) {
+
+		return tokenRepository.findByUserId(userId);
+	}
+
+}

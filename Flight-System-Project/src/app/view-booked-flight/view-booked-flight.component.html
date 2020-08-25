@@ -1,0 +1,25 @@
+<a>{{user.userName}}</a>
+<table style="width:100%" class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Leaving</th>
+            <th class="text-center">Distination</th>
+            <th class="text-center">Airport Name</th>
+            <th class="text-center">Journey Date</th>
+            <th class="text-center">Time</th>
+            <th class="text-center">Cost</th>
+        </tr>
+    </thead>
+    <tr *ngIf="bookedDetails">
+        <td class="text-center">{{bookedDetails.flightDetails.flightId}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.flightName}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.fromLocation}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.toLocation}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.airportName}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.departureDate}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.departureTime}}</td>
+        <td class="text-center">{{bookedDetails.flightDetails.price}}</td>
+    </tr>
+</table>

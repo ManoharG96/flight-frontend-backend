@@ -1,0 +1,17 @@
+package com.dxctechnology.dao;
+
+import java.time.LocalDate;
+
+import org.springframework.stereotype.Component;
+
+import com.dxctechnology.model.Flight;
+
+@Component
+public class FlightDAOImpl implements FlightDAO {
+
+	public Flight searchFlight(String fromLocation, String toLocation, LocalDate dateOfJou) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

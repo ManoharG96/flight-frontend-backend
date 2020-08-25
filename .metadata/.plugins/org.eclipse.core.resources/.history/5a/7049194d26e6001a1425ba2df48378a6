@@ -1,0 +1,104 @@
+package com.dxctechnology.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.dxctechnology.dao.UserDAO;
+import com.dxctechnology.exception.CustomExceptionHandlers;
+import com.dxctechnology.model.User;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserDAO userDao;
+
+	@Override
+	public ResponseEntity<?> register(User user) {
+		if (user.getUserName().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("UserName should not be empty");
+			userException.setDescription("UserName cant be empty");
+			throw userException;
+		}else if (user.getEmailId().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Email should not be empty");
+			userException.setDescription("Email cant be empty");
+			throw userException;
+		}else if (user.getPassword().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Password should not be empty");
+			userException.setDescription("Password cant be empty");
+			throw userException;
+		}else if (user.getConfirmPassword().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("ConfirmPassword should not be empty");
+			userException.setDescription("ConfirmPassword cant be empty");
+			throw userException;
+		}else {
+			return userDao.register(user);
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> login(String emailId, String password) {
+		if (password.isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Password should not be empty");
+			userException.setDescription("Password cant be empty");
+			throw userException;
+		}else if (emailId.isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("emailId should not be empty");
+			userException.setDescription("emailId cant be empty");
+			throw userException;
+		}else
+			return userDao.login(emailId, password);
+	}
+
+	@Override
+	public ResponseEntity<?> sendPasswordUrl(User user) {
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<?> edit(User user) {
+		if (user.getUserName().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("UserName should not be empty");
+			userException.setDescription("UserName cant be empty");
+			throw userException;
+		}else if (user.getEmailId().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Please enter the register Mail id");
+			userException.setDescription("You cant Change the Mail id, So please enter the same mail id when you register");
+			throw userException;
+		}else {
+			return userDao.edit(user);
+		}	
+	}
+
+	@Override
+	public ResponseEntity<?> resetPassword(String emailId, String token, String password, String confirmPassword) {
+		if (token.isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Token should not be Empty");
+			userException.setDescription("Enter token didnt find in db");
+			throw userException;
+		}else if (password.isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Password should not be empty");
+			userException.setDescription("Password cant be empty");
+			throw userException;
+		}else if (confirmPassword.isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("ConfirmPassword should not be empty");
+			userException.setDescription("ConfirmPassword cant be empty");
+			throw userException;
+		}else {
+			return userDao.resetPassword(emailId, token, password, confirmPassword);
+		}	
+	}
+
+}

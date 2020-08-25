@@ -1,0 +1,69 @@
+package com.dxctechnology.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name="flight")
+public class Flight {
+	
+	@Id
+	private int flightId;
+	private String flightName;
+	private String fromLocation;
+	private String toLocation;
+	private String airportName;
+	private String departureTime;
+	private String departureDate;
+	private double price;
+	
+	public int getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
+	public String getFlightName() {
+		return flightName;
+	}
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
+	public String getFromLocation() {
+		return fromLocation;
+	}
+	public void setFromLocation(String fromLocation) {
+		this.fromLocation = fromLocation;
+	}
+	public String getToLocation() {
+		return toLocation;
+	}
+	public void setToLocation(String toLocation) {
+		this.toLocation = toLocation;
+	}
+	public String getAirportName() {
+		return airportName;
+	}
+	public void setAirportName(String airportName) {
+		this.airportName = airportName;
+	}
+	public String getDepartureDate() {
+		return departureDate;
+	}
+	public void setDepartureDate(String departureDate) {
+		this.departureDate = departureDate;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public String getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
+	}
+	
+	
+}

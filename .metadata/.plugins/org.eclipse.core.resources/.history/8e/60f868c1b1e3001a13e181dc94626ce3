@@ -1,0 +1,12 @@
+package com.dxctechnology.service;
+
+import java.util.List;
+
+import com.dxctechnology.model.Bookings;
+
+public interface BookingService {
+	
+	Bookings addBookings(Bookings book);
+	List<Bookings> getbookings(int userId);
+
+}

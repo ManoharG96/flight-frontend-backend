@@ -1,0 +1,7 @@
+package com.dxctechnology.model;
+
+import javax.persistence.Entity;
+
+public class Token {
+
+}

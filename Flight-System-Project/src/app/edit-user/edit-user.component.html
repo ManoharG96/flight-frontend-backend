@@ -1,0 +1,42 @@
+<div class="col-md-6 offset-3 card card-body" [hidden]="!errorBoolean">
+    <h6 class="text-center">{{errors.description}}</h6>
+</div>
+<div class="col-md-6 offset-3 card card-body" [hidden]="!success">
+    <h6 class="text-center">Updated Successfully</h6>
+</div>
+<form action="" class="col-md-4 offset-4 mt-4 mb-4 card card-body" #form="ngForm" (ngSubmit)="updateUser(form)"
+    method="POST">
+    <h3 class="text-center">Edit Profile</h3>
+    <div class="form-group">
+        <input type="text" name="userId" id="userId" class="form-control" placeholder="{{user.userId}}"
+            #userId="ngModel" [(ngModel)]="user.userId" ngModel hidden required>
+
+    </div>
+    <div class="form-group">
+        <input type="text" name="userName" id="userName" class="form-control" placeholder="{{user.userName}}"
+            #userName="ngModel" [(ngModel)]="user.userName" ngModel pattern="^[A-Z]+[a-zA-Z ]*$" required minlength="3">
+        <div *ngIf="userName.touched && userName.invalid">
+            <div *ngIf="userName.errors.minlength || userName.errors.required" class="text-danger text-center">
+                *minimum 3 characters </div>
+        </div>
+        <div *ngIf="userName.errors && (userName.touched || userName.dirty)" class="text-danger text-center">
+            <div [hidden]="!userName.errors?.pattern"> *first char must be capital;<br> *numbers & special
+                characters not allowed </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="emailId" name="emailId" id="emailId" class="form-control" placeholder="{{user.emailId}}"
+            #emailId="ngModel" ngModel pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.emailId"
+            required>
+        <div *ngIf="emailId.touched && emailId.invalid">
+            <div *ngIf="emailId.errors.required" class="text-danger text-center"> *this field is required</div>
+        </div>
+        <div *ngIf="emailId.errors && (emailId.touched || emailId.dirty)" class="text-danger text-center">
+            <div [hidden]="!emailId.errors?.pattern"> *valid EmailId Please </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-outline-warning float-right">Update</button>
+    </div>
+
+</form>

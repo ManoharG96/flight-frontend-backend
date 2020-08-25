@@ -1,0 +1,9 @@
+package com.dxctechnology.dao;
+
+import com.dxctechnology.model.Flight;
+
+public interface FlightDAO {
+	
+	Flight searchFlight(String fromLocation, String toLocation, String departureDate);
+
+}

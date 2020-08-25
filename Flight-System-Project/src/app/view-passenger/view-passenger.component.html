@@ -1,0 +1,12 @@
+<table style="width:100%" class="table">
+    <tr>
+        <th class="text text-center text-primary">Sl.No</th>
+        <th class="text text-center text-primary">Passenger Name</th>
+        <th class="text text-center text-primary">Age</th>
+    </tr>
+    <tr *ngFor="let passenger of bookedPassenger; let i=index">
+        <td class="text-center">{{i+1}}</td>
+        <td class="text-center">{{passenger.name}}</td>
+        <td class="text-center">{{passenger.age}}</td>
+    </tr>
+</table>

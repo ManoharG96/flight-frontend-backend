@@ -1,0 +1,20 @@
+package com.dxctechnology.resources;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+
+	@GetMapping("/sign-up")
+	public String signUp() {
+		return "Sign-Up Successfull";	
+	}
+	
+	@GetMapping("/sign-up-success")
+	public String signUpSuccessful() {
+		return "Thank you for Sign-up";
+	}
+
+}

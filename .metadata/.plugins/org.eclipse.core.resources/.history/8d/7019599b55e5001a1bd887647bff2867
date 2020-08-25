@@ -1,0 +1,11 @@
+package com.dxctechnology.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.dxctechnology.model.Tokens;
+
+public interface TokenRepository extends JpaRepository<Tokens, Integer> {
+	
+	Tokens findByUserId(int userId);
+
+}

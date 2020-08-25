@@ -1,0 +1,31 @@
+package com.dxctechnology.resources;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dxctechnology.model.User;
+import com.dxctechnology.service.SendingNotification;
+
+@RestController
+public class DemoController {
+	
+	@Autowired
+	private SendingNotification notification;
+
+	@GetMapping("/sign-up")
+	public String signUp() {
+		return "Sign-Up Successfull";	
+	}
+	
+	@GetMapping("/sign-up-success")
+	public String signUpSuccessful() throws MailException {
+		User user = new User();
+		user.setEmail("manohargreddy96@gmail.com");
+		user.setName("Munna");
+		notification.sendNotification(user);
+		return "Thank you for Sign-up";
+	}
+
+}

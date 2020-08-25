@@ -1,0 +1,12 @@
+package com.dxctechnology.repository;
+
+import java.time.LocalDate;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.dxctechnology.model.Flight;
+
+public interface FlightRepository extends JpaRepository<Flight, Integer> {
+	
+	Flight findByFromLocationAndToLocationAndDateOfJou(String fromLocation, String toLocation, LocalDate dateOfJou);
+}

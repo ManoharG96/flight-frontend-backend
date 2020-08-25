@@ -1,0 +1,41 @@
+{{selectedFlight.flightName}}
+<form action="" class="col-md-6 offset-3 mt-3 mb-3 card card-body" #form="ngForm" (ngSubmit)="passengers(form)"
+    method="POST">
+    <h3 class="text-center">Add-Passengers</h3>
+    <div *ngFor="let pass of passengerArray; let i=index">
+        <div class="form-group">
+            <h6>Passenger {{i+1}} Details</h6>
+            <input type="text" name="name{{i}}" id="name" class="form-control" placeholder="Name" #name="ngModel" ngModel
+                pattern="^[A-Za-z]{3,30}$" [(ngModel)]="pass.name" required>
+            <div *ngIf="name.touched && name.invalid">
+                <div *ngIf="name.errors.required" class="text-danger text-center"> *this field is required</div>
+            </div>
+            <div *ngIf="name.errors && (name.touched || name.dirty)" class="text-danger text-center">
+                <div [hidden]="!name.errors?.pattern"> *Valid Name Please </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" name="age{{i}}" id="age" class="form-control" placeholder="Age" #age="ngModel"
+                pattern="^[0-9]{1,2}$" ngModel [(ngModel)]="pass.age" required>
+            <div *ngIf="age.touched && age.invalid">
+                <div *ngIf="age.errors.required" class="text-danger text-center"> *this field is required
+                </div>
+                <div *ngIf="age.errors && (age.touched || age.dirty)" class="text-danger text-center">
+                    <div [hidden]="!age.errors?.pattern"> *Valid Age Please </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="text text-danger" [hidden]="ageBoolean">{{ageInvalid}}</div>
+        </div>
+        <div class="form-group">
+            <a (click)="addForm()" class="btn btn-outline-success float-right">Add-One</a>
+            <a (click)="removeForm(i)" *ngIf="i!=0" class="btn btn-outline-danger float-left">Remove-Current</a>
+        </div>
+    </div>
+    <br>
+    <div>
+        <button type="submit" class="btn btn-outline-warning float-left" [disabled]="form.invalid">Add</button>
+    </div>
+
+</form>

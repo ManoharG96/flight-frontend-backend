@@ -1,0 +1,23 @@
+package com.dxctechnology.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+
+import com.dxctechnology.dao.TokensDAO;
+import com.dxctechnology.model.Tokens;
+
+public class TokenServiceImpl implements TokenService {
+
+	@Autowired
+	private TokensDAO tokensDao;
+	
+	@Autowired
+	private JavaMailSender mailSender;
+
+	@Override
+	public Tokens getByUserId(int userId) {
+		
+		return tokensDao.getByUserId(userId);
+	}
+
+}

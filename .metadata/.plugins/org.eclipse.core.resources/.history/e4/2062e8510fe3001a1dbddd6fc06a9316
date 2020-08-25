@@ -1,0 +1,15 @@
+package com.dxctechnology.dao;
+
+import java.time.LocalDate;
+
+import com.dxctechnology.model.Flight;
+
+public class FlightDAOImpl implements FlightDAO {
+
+	@Override
+	public Flight searchFlight(String fromLocation, String toLocation, LocalDate dateOfJou) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

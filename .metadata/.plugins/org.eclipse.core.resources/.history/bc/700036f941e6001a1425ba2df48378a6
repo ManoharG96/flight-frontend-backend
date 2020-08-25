@@ -1,0 +1,113 @@
+package com.dxctechnology.dao;
+
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import com.dxctechnology.exception.CustomExceptionHandlers;
+import com.dxctechnology.model.User;
+import com.dxctechnology.repository.UserRepository;
+
+@Component
+public class UserDAOImpl implements UserDAO {
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Override
+	public ResponseEntity<?> register(User user) {
+		if (user.getPassword().equals(user.getConfirmPassword())) {
+			if (userRepository.findByEmailId(user.getEmailId()) != null) {
+				CustomExceptionHandlers userException = new CustomExceptionHandlers();
+				userException.setMessage("Email Already register");
+				userException.setDescription("Enter Email id already register so please go and login");
+				throw userException;
+			} else {
+				userRepository.save(user);		
+				return new ResponseEntity<User>(user, HttpStatus.OK);
+			}
+		} else {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("ConfirmPassword and Password should be same");
+			userException.setDescription("ConfirmPassword and Password should contains same charaters");
+			throw userException;
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> login(String emailId, String password) {
+		User user = userRepository.findByEmailIdAndPassword(emailId, password);
+		if (user != null) {
+			return new ResponseEntity<User>(user,HttpStatus.OK);
+		} else {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Cant Login");
+			userException.setDescription("Please Enter correct crendentials");
+			throw userException;
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> edit(User user) {
+		User userFromDB = userRepository.findById(user.getUserId()).orElse(null);
+		if (userFromDB != null) {
+			userFromDB.setUserName(user.getUserName());
+			userFromDB.setEmailId(user.getEmailId());
+			userRepository.save(userFromDB);
+			return new ResponseEntity<User>(userFromDB, HttpStatus.OK);
+		} else {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Please check once again");
+			userException.setDescription("There is mistaken happens please logout and login angain");
+			throw userException;
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> resetPassword(String emailId, String token, String password, String confirmPassword) {
+		User userFromDB = userRepository.findByEmailId(emailId);
+		User checkToken = userRepository.findByToken(token);
+		try {
+			checkToken.toString().isEmpty();
+		}catch (Exception e) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Token didnt find in DB");
+			userException.setDescription("Please check mail and Enter correct token number");
+			throw userException;
+		} if (userFromDB.toString().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("User didnt find in DB");
+			userException.setDescription("Please go to register page and register");
+			throw userException;
+		} else if(userFromDB != null && password.equals(confirmPassword) && checkToken != null) {
+			userFromDB.setToken(null);
+			userFromDB.setPassword(password);
+			userFromDB.setConfirmPassword(confirmPassword);
+			userRepository.save(userFromDB);
+			return new ResponseEntity<User>(userFromDB, HttpStatus.OK);
+		} else {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("ConfirmPassword and Password should be same");
+			userException.setDescription("ConfirmPassword and Password should contains same charaters");
+			throw userException;
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> sendToken(String emailId) {
+		User userFromDb = userRepository.findByEmailId(emailId);
+		if (userFromDb.toString().isEmpty()) {
+			CustomExceptionHandlers userException = new CustomExceptionHandlers();
+			userException.setMessage("Didnt find user with enter mailId");
+			userException.setDescription("please check your mailId");
+			throw userException;
+		} else {
+			userFromDb.setToken(UUID.randomUUID().toString());
+			userRepository.save(userFromDb);
+			return new ResponseEntity<User>(userFromDb, HttpStatus.OK);	
+		}
+	}
+
+}

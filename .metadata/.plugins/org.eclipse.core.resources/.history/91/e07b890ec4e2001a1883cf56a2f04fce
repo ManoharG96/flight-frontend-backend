@@ -1,0 +1,19 @@
+package com.dxctechnology.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.dxctechnology.model.Bookings;
+import com.dxctechnology.repository.BookingRepository;
+
+public class BookingsDAO {
+	
+	@Autowired
+	private BookingRepository repo;
+	
+	
+	public void addBookings(Bookings book) {
+		repo.save(book);
+	}
+	
+
+}

@@ -1,0 +1,29 @@
+<div class="form-group">
+    <h4 class="text-left text-center col-md-6 offset-3 card card-body">Booking Details of {{user.userName}}</h4>
+</div>
+<div class="col-md-6 offset-3 card card-body" [hidden]="!errorBoolean">
+    <h6 class="text-center">{{errors.description}}</h6>
+</div>
+
+<div [hidden]="errorBoolean">
+    <table style="width:100%" class="table">
+        <tr>
+            <th class="text-center text-info">Booking Id</th>
+            <th class="text-center text-info">Flight Details</th>
+            <th class="text-center text-info">Passengers</th>
+            <th class="text-center text-info">Total cost</th>
+        </tr>
+        <tr *ngFor="let booking of bookings">
+            <td class="text-center">{{booking.bookingId}}</td>
+            <td class="text-center">
+                <button class="btn btn-outline-secondary text-center" type="button"
+                    (click)="flightDetails(booking)">Flight-Details</button>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-outline-secondary text-center" type="button"
+                    (click)="passengersDetails(booking)">Passengers-Details</button>
+            </td>
+            <td class="text-center">{{booking.bookingPrice}}</td>
+        </tr>
+    </table>
+</div>

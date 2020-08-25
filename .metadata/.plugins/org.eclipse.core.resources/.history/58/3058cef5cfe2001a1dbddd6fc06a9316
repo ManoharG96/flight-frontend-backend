@@ -1,0 +1,89 @@
+package com.dxctechnology.controller;
+
+import java.net.http.HttpRequest;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dxctechnology.dao.BookingsDAO;
+import com.dxctechnology.model.Bookings;
+import com.dxctechnology.model.User;
+import com.dxctechnology.repository.BookingRepository;
+import com.dxctechnology.service.UserService;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private BookingsDAO dao;
+	
+	@PostMapping("/login")
+	public ResponseEntity<?> login(HttpServletRequest request, @RequestAttribute("emailId") String emailId,
+			@RequestAttribute("password") String password){
+		HttpSession session = request.getSession(true);
+		String email = (String) session.getAttribute("emailId");
+		String pass = (String) session.getAttribute("password");
+		return userService.login(email, pass);
+	}
+	
+	@PostMapping("/register")
+	public ResponseEntity<?> register(HttpServletRequest request, @RequestBody User user){
+		return userService.register(user);
+	}
+	
+	@GetMapping("/logout")
+	public ResponseEntity<?> logout(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if (session != null ) {
+			session.invalidate();
+			return new ResponseEntity<HttpStatus>(HttpStatus.OK);	
+		} else {
+			return new ResponseEntity<HttpStatus>(HttpStatus.GATEWAY_TIMEOUT);
+		}
+		
+	}
+	
+	@GetMapping("/{userId}")
+	public List<Bookings> getBookings(@PathVariable int userId){
+		if (dao.getbookings(userId) != null)
+			return dao.getbookings(userId);
+		else {
+			System.out.println("==============================");
+			System.out.println("Not Found Records");
+			return null;
+		}
+		
+	}
+	@PutMapping("/addbooking")
+	public void addBookings(@RequestBody Bookings book) {
+		dao.addBookings(book);
+		System.out.println("==========================");
+		System.out.println("Added successfully");
+	}
+	
+	@GetMapping("/session")
+	public HttpSession session(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		return request.getSession();
+	}
+
+}

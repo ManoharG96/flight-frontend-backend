@@ -1,0 +1,52 @@
+package com.dxctechnology.model;
+
+import java.time.LocalDate;
+
+public class Flight {
+	
+	private int flightId;
+	private String flightName;
+	private String fromLocation;
+	private String toLocation;
+	private LocalDate dateOfJou;
+	private double price;
+	
+	public int getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
+	public String getFlightName() {
+		return flightName;
+	}
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
+	public String getFromLocation() {
+		return fromLocation;
+	}
+	public void setFromLocation(String fromLocation) {
+		this.fromLocation = fromLocation;
+	}
+	public String getToLocation() {
+		return toLocation;
+	}
+	public void setToLocation(String toLocation) {
+		this.toLocation = toLocation;
+	}
+	public LocalDate getDateOfJou() {
+		return dateOfJou;
+	}
+	public void setDateOfJou(LocalDate dateOfJou) {
+		this.dateOfJou = dateOfJou;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	
+}
