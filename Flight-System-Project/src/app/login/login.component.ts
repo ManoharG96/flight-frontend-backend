@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   errors = new ErrorsInfo(); 
   errorBoolean: boolean = false;
   sendingStatus: boolean = false;
+  isLoginSuccess: boolean = false;
   
   ngOnInit() {
     this.errors = new ErrorsInfo();
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
       this.errors = err.error;
       this.errorBoolean = true;
       console.log(this.errors);
+      this.isLoginSuccess = false;
     });
   }
   settingSession(data) {
@@ -59,4 +61,7 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['register']);
   }
 
+  loginSuccess(){
+    this.isLoginSuccess = true;
+  }
 }

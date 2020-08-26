@@ -11,7 +11,7 @@
         <a class="nav-link"  (click)="hiddingButton()" routerLink="home">Home</a>
       </li>
       <li class="nav-item active dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" *ngIf="success"  role="button" data-toggle="dropdown"
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" (click)="hiddingButton()" *ngIf="success"  role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Account
         </a>
@@ -27,7 +27,7 @@
       &nbsp;
       <button class="btn btn-outline-success my-2 my-sm-0" (click)="hiddingButton()" *ngIf="!success" routerLink="/register">Register</button>
       &nbsp;
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="hiddingButton()" *ngIf="success" routerLink="/logout">Logout</button>
+      <button class="btn btn-outline-success my-2 my-sm-0"  (click)="hiddingButton()" *ngIf="success" routerLink="/logout">Logout</button>
 
     </form>
   </div>
