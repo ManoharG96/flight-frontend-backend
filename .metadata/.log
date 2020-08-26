@@ -1559,3 +1559,8 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-08-26 13:53:31.078
 !MESSAGE executing callback sts4.classpath.PfaSCBbS SUCCESS [done]
+
+!ENTRY org.eclipse.core.resources 2 2 2020-08-26 13:58:58.005
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2020-08-26 13:58:58.006
+!MESSAGE The project description file (.project) for 'Mail-Sending-Project' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
